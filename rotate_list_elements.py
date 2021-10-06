@@ -1,16 +1,16 @@
-#rotating list elements anticlockwise
-def rotate(arr,n,k):
-    k = k%n
-    for i in range(0,n):
-        if i < k:
-            print(arr[n+i-k] , end=" ")
-        else :
-            print(arr[i-k], end = " ")
-lst = []
-n = int(input("enter length of list: "))
-for i in range(0,n):
-    x = int(input("enter vals of list:"))
-    lst.append(x)
-print("original list:",lst)
-k = int(input("enter how many time to rotate?"))
-rotate(lst,n,k)
+
+test_list = [1, 4, 6, 7, 2]
+print ("Original list : " + str(test_list))
+
+test_list = test_list[3:] + test_list[:3]
+
+# Printing list after left rotate
+print ("List after left rotate by 3 : " + str(test_list))
+
+# using slicing to right rotate by 3
+# back to Original
+test_list = test_list[-3:] + test_list[:-3]
+
+# Printing after right rotate
+print ("List after right rotate by 3(back to original) : "
+		                                               + str(test_list))
