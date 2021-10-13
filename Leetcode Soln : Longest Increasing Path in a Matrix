@@ -1,0 +1,47 @@
+int dx[]={1,-1,0,0};
+int dy[]={0,0,1,-1};
+
+class Solution {
+public:
+    
+    
+    int dp[205][205];
+    int dfs(int x,int y,vector<vector<int>>& grid,int n,int m)
+    {
+        
+        if(dp[x][y]!=-1)
+            return dp[x][y];
+        
+        int mx=0;
+        for(int i=0;i<4;i++)
+        {
+            int newx = x+dx[i];
+            int newy = y+dy[i];
+            if(newx>=0 and newx<n and newy>=0 and newy<m and grid[x][y]<grid[newx][newy])
+            {
+                mx=max(mx,dfs(newx,newy,grid,n,m));
+            }
+        }
+        return dp[x][y]=mx+1;
+    }
+    
+    int longestIncreasingPath(vector<vector<int>>& grid) {
+        int n,m,i,j;
+        n=grid.size();
+        m=grid[0].size();
+        
+        int mx=0;
+        
+        memset(dp,-1,sizeof dp);
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<m;j++)
+            {
+                int path = dfs(i,j,grid,n,m);
+                mx=max(mx,path);
+            }
+        }
+        
+        return mx;
+    }
+};
